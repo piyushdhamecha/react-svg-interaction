@@ -23,7 +23,7 @@ const SvgInteractive = ({ svgComponent, defaultValues, onClick }) => {
     Object.keys(coordinates).forEach((key) => {
       addCircle(key, coordinates[key]);
     });
-  }, [coordinates]);
+  }, []);
 
   const addCircle = (id, { x, y }) => {
     const circle = document.createElementNS(
