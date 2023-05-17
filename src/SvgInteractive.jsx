@@ -66,7 +66,7 @@ const SvgInteractive = ({ svgComponent, defaultValues, onClick }) => {
     }
 
     const pt = svgRef.current.createSVGPoint();
-    console.log(e);
+
     pt.x = e.clientX;
     pt.y = e.clientY;
 

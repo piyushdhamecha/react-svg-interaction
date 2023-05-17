@@ -20,51 +20,6 @@ const selectedPoints = [
 ];
 
 function App() {
-  // const svgRef = useRef(null);
-
-  // const addCircle = (x, y) => {
-  //   const circle = document.createElementNS(
-  //     "http://www.w3.org/2000/svg",
-  //     "circle"
-  //   );
-  //   circle.setAttribute("cx", x);
-  //   circle.setAttribute("cy", y);
-  //   circle.setAttribute("r", 5);
-  //   circle.setAttribute("fill", "#ff0000");
-  //   svgRef.current.appendChild(circle);
-  // };
-
-  // useEffect(() => {
-  //   selectedPoints.forEach(({ x, y }) => {
-  //     addCircle(x, y);
-  //   });
-  // }, []);
-
-  // const handleClick = (e) => {
-  //   if (e.target.tagName === "circle") {
-  //     return;
-  //   }
-
-  //   const pt = svgRef.current.createSVGPoint();
-  //   console.log(e);
-  //   pt.x = e.clientX;
-  //   pt.y = e.clientY;
-
-  //   const { x, y } = pt.matrixTransform(
-  //     svgRef.current.getScreenCTM().inverse()
-  //   );
-
-  //   console.log({ x, y });
-  //   addCircle(x, y);
-  // };
-
-  // // return <SvgImage ref={svgRef} onClick={handleClick} />;
-  // return (
-  //   <div>
-  //     <svg ref={svgRef} onClick={handleClick} />;
-  //   </div>
-  // );
-
   const handleClick = (coordinates) => {
     console.log(coordinates);
   };
