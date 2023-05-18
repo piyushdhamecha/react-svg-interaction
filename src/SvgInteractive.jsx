@@ -25,17 +25,43 @@ const SvgInteractive = ({ svgComponent, defaultValues, onClick }) => {
     });
   }, []);
 
-  const addCircle = (id, { x, y }) => {
+  const createCircleElement = (attributes) => {
     const circle = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "circle"
     );
-    circle.setAttribute("cx", x);
-    circle.setAttribute("cy", y);
-    circle.setAttribute("r", 5);
-    circle.setAttribute("fill", "#ff0000");
-    circle.setAttribute("data-id", id);
-    svgRef.current.appendChild(circle);
+
+    Object.keys(attributes).forEach((key) => {
+      circle.setAttribute(key, attributes[key]);
+    });
+
+    return circle;
+  };
+
+  const addCircle = (id, { x, y }) => {
+    const circle1 = createCircleElement({
+      cx: x,
+      cy: y,
+      r: 14,
+      stroke: "#E20714",
+      fill: "transparent",
+      "stroke-width": 3,
+      "data-id": id,
+      opacity: 0.3,
+      style: "cursor: pointer",
+    });
+
+    const circle2 = createCircleElement({
+      cx: x,
+      cy: y,
+      r: 9,
+      fill: "#E20714",
+      "data-id": id,
+      style: "cursor: pointer",
+    });
+
+    svgRef.current.appendChild(circle1);
+    svgRef.current.appendChild(circle2);
   };
 
   const handleSaveCoordinates = (updatedCoordinates) => {
@@ -48,9 +74,9 @@ const SvgInteractive = ({ svgComponent, defaultValues, onClick }) => {
   };
 
   const removeCircle = (id) => {
-    const element = svgRef.current.querySelector(`[data-id="${id}"]`);
+    const elements = svgRef.current.querySelectorAll(`[data-id="${id}"]`);
 
-    svgRef.current.removeChild(element);
+    elements.forEach((element) => svgRef.current.removeChild(element));
 
     const newCoordinates = { ...coordinates };
 
@@ -60,6 +86,7 @@ const SvgInteractive = ({ svgComponent, defaultValues, onClick }) => {
   };
 
   const handleClick = (e) => {
+    console.dir(e.target);
     if (e.target.tagName === "circle") {
       removeCircle(e.target.dataset.id);
       return;
